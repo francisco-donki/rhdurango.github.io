@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Expediente RRHH Salud</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+<style>
+:root {
+    --medical-blue: #0077b6;
+    --paper: #ffffff;
+    --bg: #e5e5e5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--bg);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    perspective: 1400px;
+    touch-action: manipulation;
+}
+
+.book-container {
+    position: relative;
+    width: 300px;
+    height: 420px;
+    transform-style: preserve-3d;
+    transform: translateX(5%);
+}
+
+.spine {
+    position: absolute;
+    left: -8px;
+    width: 10px;
+    height: 100%;
+    background: linear-gradient(to right, #bbb, #eee);
+    border-radius: 5px 0 0 5px;
+}
+
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--paper);
+    border-radius: 5px 15px 15px 5px;
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    backface-visibility: hidden;
+    z-index: calc(10 - var(--page-index));
+    cursor: pointer;
+    user-select: none;
+}
+
+.page-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #f4f4f4;
+    transform: rotateY(-180deg);
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px 5px 5px 15px;
+}
+
+.cover {
+    background: linear-gradient(135deg, #0077b6, #00b4d8);
+    color: white;
+}
+
+.icon { font-size: 45px; margin-bottom: 15px; }
+h2 { color: #0077b6; font-size: 1rem; margin-bottom: 10px; text-transform: uppercase; }
+.cover h2 { color: white; }
+p { font-size: 0.9rem; color: #444; }
+
+.page-num {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    font-size: 0.7rem;
+    color: #aaa;
+}
+
+#final-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: radial-gradient(circle, #0077b6, #001d3d);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 30px;
+    overflow: hidden;
+}
+
+.btn-reload {
+    margin-top: 25px;
+    padding: 12px 30px;
+    background: white;
+    color: #0077b6;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+}
+
+.heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 20px;
+    animation: floatUp 4s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 0.8; }
+    100% { transform: translateY(-110vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="book-container" id="book">
+<div class="spine"></div>
+
+<!-- PÁGINAS -->
+
+<div class="page" id="p8" style="--page-index:8;">
+<div class="icon">💘</div>
+<h2>Dictamen Final</h2>
+<p>"Revisamos nómina estatal, incidencias y 38 hojas de Excel… y concluimos que este equipo está oficialmente certificado en amistad."</p>
+<div class="page-back">❤️</div>
+<span class="page-num">8</span>
+</div>
+
+<div class="page" id="p7" style="--page-index:7;">
+<div class="icon">📑</div>
+<h2>Declaración SAT</h2>
+<p>"Declaramos ante el SAT que el único ingreso libre de impuestos aquí… es el cariño del equipo."</p>
+<div class="page-back">💌</div>
+<span class="page-num">7</span>
+</div>
+
+<div class="page" id="p6" style="--page-index:6;">
+<div class="icon">📊</div>
+<h2>Base de Datos</h2>
+<p>"Nuestro Excel puede calcular miles de registros… pero la fórmula más fuerte es el compañerismo."</p>
+<div class="page-back">📈</div>
+<span class="page-num">6</span>
+</div>
+
+<div class="page" id="p5" style="--page-index:5;">
+<div class="icon">🔍</div>
+<h2>Auditoría</h2>
+<p>"Si el SAT auditara nuestro ambiente laboral… saldría con una sonrisa."</p>
+<div class="page-back">😊</div>
+<span class="page-num">5</span>
+</div>
+
+<div class="page" id="p4" style="--page-index:4;">
+<div class="icon">💼</div>
+<h2>Nómina Estatal</h2>
+<p>"Procesar la nómina del sector salud no es sencillo… pero juntos todo fluye mejor."</p>
+<div class="page-back">💙</div>
+<span class="page-num">4</span>
+</div>
+
+<div class="page" id="p3" style="--page-index:3;">
+<div class="icon">☕</div>
+<h2>Incidencias</h2>
+<p>"Entre llamadas urgentes y reportes, siempre hay espacio para un café compartido."</p>
+<div class="page-back">✨</div>
+<span class="page-num">3</span>
+</div>
+
+<div class="page" id="p2" style="--page-index:2;">
+<div class="icon">🏥</div>
+<h2>Sector Salud</h2>
+<p>"Administrar el talento humano de todo un estado es un reto… hacerlo con amistad es un privilegio."</p>
+<div class="page-back">💞</div>
+<span class="page-num">2</span>
+</div>
+
+<div class="page cover" id="p1" style="--page-index:1;">
+<div class="icon">📂</div>
+<h1>EXPEDIENTE 14-F</h1>
+<h2>RRHH SECTOR SALUD</h2>
+<p style="color:white; font-size:0.85rem; margin-top:15px;">
+Auditoría Especial – Día del Amor y la Amistad
+</p>
+<p style="font-size:0.75rem; margin-top:20px; opacity:0.8;">
+Toca para abrir expediente
+</p>
+<span class="page-num">2026</span>
+</div>
+
+</div>
+
+<div id="final-screen">
+<div style="font-size:60px;">🏥💖</div>
+<h1>¡Feliz Día del Amor y la Amistad!</h1>
+<p style="max-width:300px; margin-top:15px;">
+Gestionar RRHH del sector salud es enorme…  
+pero hacerlo con ustedes lo hace especial.
+</p>
+<button class="btn-reload" onclick="location.reload()">Reabrir Expediente</button>
+</div>
+
+<script>
+let current = 1;
+const total = 8;
+const finalScreen = document.getElementById('final-screen');
+
+function flipPage() {
+if (current > total) return;
+
+const pageToFlip = document.getElementById(`p${current}`);
+
+gsap.to(pageToFlip, {
+duration: 1,
+rotationY: -180,
+ease: "power2.inOut",
+onComplete: () => {
+pageToFlip.style.pointerEvents = "none";
+}
+});
+
+current++;
+
+if (current > total) {
+setTimeout(() => {
+document.getElementById('book').style.display = 'none';
+finalScreen.style.display = 'flex';
+createHearts();
+}, 1000);
+}
+}
+
+document.querySelectorAll('.page').forEach(page => {
+page.addEventListener('click', flipPage);
+page.addEventListener('touchstart', flipPage);
+});
+
+function createHearts() {
+setInterval(() => {
+const heart = document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML = "💖";
+heart.style.left = Math.random() * 100 + "vw";
+heart.style.fontSize = (15 + Math.random() * 25) + "px";
+heart.style.animationDuration = (3 + Math.random() * 2) + "s";
+finalScreen.appendChild(heart);
+setTimeout(() => heart.remove(), 5000);
+}, 400);
+}
+</script>
+
+</body>
+</html>
